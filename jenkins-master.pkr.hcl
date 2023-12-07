@@ -33,7 +33,7 @@ source "amazon-ebs" "jenkins-master" {
 }
 
 build {
-  name = "jenkins-master"
+  name    = "jenkins-master"
   sources = ["source.amazon-ebs.jenkins-master"]
 
   provisioner "file" {

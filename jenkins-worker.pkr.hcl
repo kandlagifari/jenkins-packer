@@ -33,7 +33,7 @@ source "amazon-ebs" "jenkins-worker" {
 }
 
 build {
-  name = "jenkins-worker"
+  name    = "jenkins-worker"
   sources = ["source.amazon-ebs.jenkins-worker"]
 
   provisioner "shell" {
