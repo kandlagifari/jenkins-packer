@@ -1,19 +1,19 @@
 variable "aws_profile" {
   type    = string
-  default = "kobokan-aer"
+  default = "iam-profile"
 }
 
 variable "instance_type" {
   type    = string
-  default = "t3.small"
+  default = "t3.micro"
 }
 
 variable "region" {
   type    = string
-  default = "ap-southeast-3"
+  default = "us-east-1"
 }
 
 variable "ssh_key" {
   type    = string
-  default = "/path/to/ssh-key"
+  default = "/path/to/private-key"
 }

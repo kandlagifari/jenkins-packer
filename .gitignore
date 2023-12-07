@@ -80,3 +80,6 @@ typings
 # System Files
 .DS_Store
 Thumbs.db
+
+# Packer
+*.auto.pkrvars.hcl
