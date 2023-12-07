@@ -8,7 +8,7 @@ import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
 import hudson.plugins.sshslaves.*;
 
-println "--> creating SSH credentials"
+println "--> Creating SSH Credentials"
 
 domain = Domain.global()
 store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()

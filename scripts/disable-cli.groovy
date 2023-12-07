@@ -4,6 +4,6 @@ import jenkins.model.Jenkins
 
 Jenkins jenkins = Jenkins.getInstance()
 
-println "--> disabling Jenkins remote CLI"
+println "--> Disabling Jenkins Remote CLI"
 jenkins.CLI.get().setEnabled(false)
 jenkins.save()

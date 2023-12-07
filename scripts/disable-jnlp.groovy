@@ -5,10 +5,10 @@ import jenkins.security.s2m.*
 
 Jenkins jenkins = Jenkins.getInstance()
 
-println "--> disabling JNLP"
+println "--> Disabling JNLP"
 jenkins.setSlaveAgentPort(-1)
 
-println "--> disabling non-encrypted protocols"
+println "--> Disabling Non-Encrypted Protocols"
 HashSet<String> newProtocols = new HashSet<>(jenkins.getAgentProtocols());
 newProtocols.removeAll(Arrays.asList(
         "JNLP3-connect", "JNLP2-connect", "JNLP-connect", "CLI-connect"

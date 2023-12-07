@@ -12,3 +12,8 @@ variable "region" {
   type    = string
   default = "ap-southeast-3"
 }
+
+variable "ssh_key" {
+  type    = string
+  default = "/path/to/ssh-key"
+}

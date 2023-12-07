@@ -36,6 +36,21 @@ build {
   name = "jenkins-master"
   sources = ["source.amazon-ebs.jenkins-master"]
 
+  provisioner "file" {
+    destination = "/tmp/"
+    source      = "./scripts"
+  }
+
+  provisioner "file" {
+    destination = "/tmp/"
+    source      = "./config"
+  }
+
+  provisioner "file" {
+    destination = "/tmp/id_rsa"
+    source      = "${var.ssh_key}"
+  }
+
   provisioner "shell" {
     execute_command = "sudo -E -S sh '{{ .Path }}'"
     script          = "./setup-jenkins-master.sh"
