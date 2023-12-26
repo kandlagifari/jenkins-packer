@@ -7,9 +7,9 @@ packer {
   }
 }
 
-source "amazon-ebs" "jenkins-master" {
+source "amazon-ebs" "jenkins-master-auto" {
   ami_description = "Amazon Linux Image with Jenkins Server"
-  ami_name        = "jenkins-master-automated-{{timestamp}}"
+  ami_name        = "jenkins-master-auto-{{timestamp}}"
   instance_type   = "${var.instance_type}"
   profile         = "${var.aws_profile}"
   region          = "${var.region}"
@@ -24,7 +24,7 @@ source "amazon-ebs" "jenkins-master" {
   }
   ssh_username = "ec2-user"
   tags = {
-    "Name"        = "Jenkins Master Automated"
+    "Name"        = "Jenkins Master Auto"
     "Environment" = "SandBox"
     "OS_Version"  = "Amazon Linux 2"
     "Release"     = "Latest"
@@ -33,8 +33,8 @@ source "amazon-ebs" "jenkins-master" {
 }
 
 build {
-  name    = "jenkins-master"
-  sources = ["source.amazon-ebs.jenkins-master"]
+  name    = "jenkins-master-auto"
+  sources = ["source.amazon-ebs.jenkins-master-auto"]
 
   provisioner "file" {
     destination = "/tmp/"
@@ -53,6 +53,6 @@ build {
 
   provisioner "shell" {
     execute_command = "sudo -E -S sh '{{ .Path }}'"
-    script          = "./setup-jenkins-master.sh"
+    script          = "./setup-jenkins-auto.sh"
   }
 }

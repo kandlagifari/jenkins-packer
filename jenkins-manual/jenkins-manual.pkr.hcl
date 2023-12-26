@@ -7,9 +7,9 @@ packer {
   }
 }
 
-source "amazon-ebs" "jenkins-worker" {
+source "amazon-ebs" "jenkins-master" {
   ami_description = "Amazon Linux Image with Jenkins Server"
-  ami_name        = "jenkins-master-manual-{{timestamp}}"
+  ami_name        = "jenkins-master-{{timestamp}}"
   instance_type   = "${var.instance_type}"
   profile         = "${var.aws_profile}"
   region          = "${var.region}"
@@ -24,7 +24,7 @@ source "amazon-ebs" "jenkins-worker" {
   }
   ssh_username = "ec2-user"
   tags = {
-    "Name"        = "Jenkins Master Manual"
+    "Name"        = "Jenkins Master"
     "Environment" = "SandBox"
     "OS_Version"  = "Amazon Linux 2"
     "Release"     = "Latest"
@@ -33,11 +33,11 @@ source "amazon-ebs" "jenkins-worker" {
 }
 
 build {
-  name    = "jenkins-worker"
-  sources = ["source.amazon-ebs.jenkins-worker"]
+  name    = "jenkins-master"
+  sources = ["source.amazon-ebs.jenkins-master"]
 
   provisioner "shell" {
     execute_command = "sudo -E -S sh '{{ .Path }}'"
-    script          = "./setup-jenkins-worker.sh"
+    script          = "./setup-jenkins.sh"
   }
 }
