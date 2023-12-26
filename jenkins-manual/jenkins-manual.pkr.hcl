@@ -8,8 +8,8 @@ packer {
 }
 
 source "amazon-ebs" "jenkins-worker" {
-  ami_description = "Jenkins worker's AMI"
-  ami_name        = "jenkins-worker-{{timestamp}}"
+  ami_description = "Amazon Linux Image with Jenkins Server"
+  ami_name        = "jenkins-master-{{timestamp}}"
   instance_type   = "${var.instance_type}"
   profile         = "${var.aws_profile}"
   region          = "${var.region}"
