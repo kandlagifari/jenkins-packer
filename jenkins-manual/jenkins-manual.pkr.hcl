@@ -9,7 +9,7 @@ packer {
 
 source "amazon-ebs" "jenkins-worker" {
   ami_description = "Amazon Linux Image with Jenkins Server"
-  ami_name        = "jenkins-master-{{timestamp}}"
+  ami_name        = "jenkins-master-manual-{{timestamp}}"
   instance_type   = "${var.instance_type}"
   profile         = "${var.aws_profile}"
   region          = "${var.region}"
@@ -24,7 +24,7 @@ source "amazon-ebs" "jenkins-worker" {
   }
   ssh_username = "ec2-user"
   tags = {
-    "Name"        = "Jenkins Worker"
+    "Name"        = "Jenkins Master Manual"
     "Environment" = "SandBox"
     "OS_Version"  = "Amazon Linux 2"
     "Release"     = "Latest"
