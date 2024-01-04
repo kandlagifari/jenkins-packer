@@ -7,15 +7,15 @@ packer {
   }
 }
 
-source "amazon-ebs" "jenkins-master" {
-  ami_description = "Amazon Linux Image with Jenkins Server"
-  ami_name        = "jenkins-master-{{timestamp}}"
+source "amazon-ebs" "jenkins-worker" {
+  ami_description = "Amazon Linux Image for Jenkins Worker"
+  ami_name        = "jenkins-worker-{{timestamp}}"
   instance_type   = "${var.instance_type}"
   profile         = "${var.aws_profile}"
   region          = "${var.region}"
   source_ami_filter {
     filters = {
-      name                = "Amazon Linux AMI-*"
+      name                = "amzn2-ami-hvm*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
@@ -24,7 +24,7 @@ source "amazon-ebs" "jenkins-master" {
   }
   ssh_username = "ec2-user"
   tags = {
-    "Name"        = "Jenkins Master"
+    "Name"        = "Jenkins Worker"
     "Environment" = "SandBox"
     "OS_Version"  = "Amazon Linux 2"
     "Release"     = "Latest"
@@ -33,8 +33,8 @@ source "amazon-ebs" "jenkins-master" {
 }
 
 build {
-  name    = "jenkins-master"
-  sources = ["source.amazon-ebs.jenkins-master"]
+  name    = "jenkins-worker"
+  sources = ["source.amazon-ebs.jenkins-worker"]
 
   provisioner "shell" {
     execute_command = "sudo -E -S sh '{{ .Path }}'"

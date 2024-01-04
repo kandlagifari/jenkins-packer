@@ -10,4 +10,6 @@ wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/je
 rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 yum install -y jenkins
 chkconfig jenkins on
-service jenkins start
+systemctl start jenkins
+systemctl status jenkins
+journalctl -u jenkins
